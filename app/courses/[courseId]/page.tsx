@@ -60,18 +60,18 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ c
     return (
         <div className="min-h-screen">
             {/* ヒーローセクション */}
-            <section className="bg-gradient-to-b from-orange-50 to-white py-12 md:py-20">
+            <section className="bg-gradient-to-b from-orange-50 to-white py-8 sm:py-12 md:py-20 px-4">
                 <div className="container">
                     <div className="max-w-4xl mx-auto text-center">
-                        <h1 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                        <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-4 sm:mb-6">
                             {course.title}
                         </h1>
-                        <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+                        <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed">
                             {course.description.split('\n')[0]}
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8">
                             {isPurchased ? (
-                                <Button asChild size="lg" className="h-14 text-lg font-bold bg-green-600 hover:bg-green-700 px-8">
+                                <Button asChild size="lg" className="h-12 sm:h-14 text-base sm:text-lg font-bold bg-green-600 hover:bg-green-700 px-6 sm:px-8">
                                     <Link href={`/learn/${course.id}`}>
                                         <PlayCircle className="mr-2 h-5 w-5" />
                                         講座を受講する
@@ -79,14 +79,14 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ c
                                 </Button>
                             ) : (
                                 <>
-                                    <Button asChild size="lg" className="h-14 text-lg font-bold bg-orange-600 hover:bg-orange-700 px-8">
+                                    <Button asChild size="lg" className="h-12 sm:h-14 text-base sm:text-lg font-bold bg-orange-600 hover:bg-orange-700 px-6 sm:px-8">
                                         <Link href={`/learn/${course.id}`}>
                                             <PlayCircle className="mr-2 h-5 w-5" />
                                             講座を受講する
                                         </Link>
                                     </Button>
                                     {freeLesson && (
-                                        <Button asChild size="lg" variant="outline" className="h-14 text-lg font-bold px-8 border-2">
+                                        <Button asChild size="lg" variant="outline" className="h-12 sm:h-14 text-base sm:text-lg font-bold px-6 sm:px-8 border-2">
                                             <Link href={`/learn/${course.id}/${freeLesson.id}`}>
                                                 無料プレビュー
                                             </Link>
@@ -100,34 +100,34 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ c
             </section>
 
             {/* コース概要セクション */}
-            <section className="py-12 md:py-16 bg-white">
+            <section className="py-8 sm:py-12 md:py-16 bg-white px-4">
                 <div className="container">
                     <div className="max-w-4xl mx-auto">
-                        <div className="bg-gray-50 rounded-2xl p-8 md:p-12 text-center">
-                            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
+                        <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-5 sm:p-8 md:p-12 text-center">
+                            <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6 sm:mb-8">
                                 {course.description}
                             </p>
                             
                             {/* スペック */}
-                            <div className="flex flex-wrap justify-center gap-6 md:gap-10 mb-8">
-                                <div className="flex items-center gap-2 text-gray-600">
-                                    <BookOpen className="h-5 w-5 text-orange-600" />
-                                    <span className="font-medium">{chapterCount}セクション {lessonCount}レッスン</span>
+                            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-6 md:gap-10 mb-6 sm:mb-8">
+                                <div className="flex items-center justify-center gap-2 text-gray-600">
+                                    <BookOpen className="h-4 w-4 sm:h-5 sm:w-5 text-orange-600" />
+                                    <span className="font-medium text-sm sm:text-base">{chapterCount}セクション {lessonCount}レッスン</span>
                                 </div>
-                                <div className="flex items-center gap-2 text-gray-600">
-                                    <Clock className="h-5 w-5 text-orange-600" />
-                                    <span className="font-medium">約{lessonCount * 6}分の講座</span>
+                                <div className="flex items-center justify-center gap-2 text-gray-600">
+                                    <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-orange-600" />
+                                    <span className="font-medium text-sm sm:text-base">約{lessonCount * 6}分の講座</span>
                                 </div>
-                                <div className="flex items-center gap-2 text-gray-600">
-                                    <Users className="h-5 w-5 text-orange-600" />
-                                    <span className="font-medium">100名以上が受講</span>
+                                <div className="flex items-center justify-center gap-2 text-gray-600">
+                                    <Users className="h-4 w-4 sm:h-5 sm:w-5 text-orange-600" />
+                                    <span className="font-medium text-sm sm:text-base">100名以上が受講</span>
                                 </div>
                             </div>
 
                             {/* 価格 */}
-                            <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
+                            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2">
                                 ¥{course.price_jpy.toLocaleString()}
-                                <span className="text-lg font-normal text-gray-600 ml-2">（完全買い切り）</span>
+                                <span className="text-sm sm:text-lg font-normal text-gray-600 ml-1 sm:ml-2 block sm:inline mt-1 sm:mt-0">（完全買い切り）</span>
                             </div>
                         </div>
                     </div>
@@ -170,14 +170,14 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ c
             </section>
 
             {/* レッスン数セクション */}
-            <section className="py-12 md:py-16 bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+            <section className="py-8 sm:py-12 md:py-16 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4">
                 <div className="container">
                     <div className="max-w-4xl mx-auto text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">
                             {chapterCount}セクション{lessonCount}レッスン収録
                         </h2>
-                        <p className="text-lg md:text-xl opacity-90">
-                            1つのレッスンを約6分で学習できるから<br className="hidden md:block" />
+                        <p className="text-base sm:text-lg md:text-xl opacity-90">
+                            1つのレッスンを約6分で学習できるから<br className="hidden sm:block" />
                             自分のペースで学習を進められます。
                         </p>
                     </div>
@@ -222,24 +222,24 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ c
             </section>
 
             {/* 講座料金セクション */}
-            <section className="py-12 md:py-20 bg-gradient-to-b from-white to-orange-50">
+            <section className="py-10 sm:py-12 md:py-20 bg-gradient-to-b from-white to-orange-50 px-4">
                 <div className="container">
                     <div className="max-w-2xl mx-auto text-center">
-                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
                             講座料金（買い切り）
                         </h2>
-                        <div className="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
+                        <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 sm:mb-8">
                             ¥{course.price_jpy.toLocaleString()}
                         </div>
                         
                         {isPurchased ? (
-                            <div className="space-y-4">
-                                <div className="bg-green-100 text-green-800 py-3 px-6 rounded-lg inline-flex items-center gap-2 font-bold">
-                                    <CheckCircle2 className="h-5 w-5" />
+                            <div className="space-y-3 sm:space-y-4">
+                                <div className="bg-green-100 text-green-800 py-2 sm:py-3 px-4 sm:px-6 rounded-lg inline-flex items-center gap-2 font-bold text-sm sm:text-base">
+                                    <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5" />
                                     購入済みです
                                 </div>
                                 <div>
-                                    <Button asChild size="lg" className="h-16 text-xl font-bold bg-green-600 hover:bg-green-700 px-12">
+                                    <Button asChild size="lg" className="h-14 sm:h-16 text-lg sm:text-xl font-bold bg-green-600 hover:bg-green-700 px-8 sm:px-12 w-full sm:w-auto">
                                         <Link href={`/learn/${course.id}`}>
                                             講座を受講する
                                         </Link>
@@ -247,22 +247,22 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ c
                                 </div>
                             </div>
                         ) : (
-                            <div className="space-y-4">
+                            <div className="space-y-3 sm:space-y-4">
                                 {user ? (
                                     <form action={CHECKOUT_URL} method="POST">
                                         <input type="hidden" name="courseId" value={course.id} />
-                                        <Button type="submit" size="lg" className="h-16 text-xl font-bold bg-orange-600 hover:bg-orange-700 px-12 shadow-lg">
+                                        <Button type="submit" size="lg" className="h-14 sm:h-16 text-lg sm:text-xl font-bold bg-orange-600 hover:bg-orange-700 px-8 sm:px-12 shadow-lg w-full sm:w-auto">
                                             講座を受講する
                                         </Button>
                                     </form>
                                 ) : (
-                                    <Button asChild size="lg" className="h-16 text-xl font-bold bg-orange-600 hover:bg-orange-700 px-12 shadow-lg">
+                                    <Button asChild size="lg" className="h-14 sm:h-16 text-lg sm:text-xl font-bold bg-orange-600 hover:bg-orange-700 px-8 sm:px-12 shadow-lg w-full sm:w-auto">
                                         <Link href={`/auth/login?next=/courses/${course.id}`}>
                                             講座を受講する
                                         </Link>
                                     </Button>
                                 )}
-                                <p className="text-sm text-gray-500">
+                                <p className="text-xs sm:text-sm text-gray-500">
                                     一度購入すれば、無期限で視聴できます。
                                 </p>
                             </div>

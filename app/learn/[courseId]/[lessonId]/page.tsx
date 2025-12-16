@@ -39,24 +39,24 @@ export default async function LessonPage({ params }: { params: Promise<{ courseI
 
     if (isLocked) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[60vh] p-8 text-center space-y-6">
-                <div className="bg-orange-100 p-8 rounded-full">
-                    <Lock className="h-16 w-16 text-orange-600" />
+            <div className="flex flex-col items-center justify-center min-h-[60vh] p-4 sm:p-8 text-center space-y-4 sm:space-y-6">
+                <div className="bg-orange-100 p-6 sm:p-8 rounded-full">
+                    <Lock className="h-12 w-12 sm:h-16 sm:w-16 text-orange-600" />
                 </div>
                 <div className="space-y-2">
-                    <h2 className="text-3xl font-bold text-gray-900">このレッスンは購入が必要です</h2>
-                    <p className="text-lg text-gray-600 max-w-md">
+                    <h2 className="text-xl sm:text-3xl font-bold text-gray-900">このレッスンは購入が必要です</h2>
+                    <p className="text-base sm:text-lg text-gray-600 max-w-md">
                         続きをご覧になるには、コースを購入してください。
                     </p>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4">
-                    <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 font-bold text-lg px-8">
+                <div className="flex flex-col gap-3 w-full max-w-sm">
+                    <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 font-bold text-base sm:text-lg px-6 sm:px-8 h-12 sm:h-auto">
                         <Link href={`/courses/${courseId}`}>
                             コース詳細を見る
                         </Link>
                     </Button>
                     {!user && (
-                        <Button asChild size="lg" variant="outline" className="font-bold text-lg px-8">
+                        <Button asChild size="lg" variant="outline" className="font-bold text-base sm:text-lg px-6 sm:px-8 h-12 sm:h-auto">
                             <Link href={`/auth/login?next=/learn/${courseId}/${lessonId}`}>
                                 ログインする
                             </Link>
@@ -68,55 +68,56 @@ export default async function LessonPage({ params }: { params: Promise<{ courseI
     }
 
     return (
-        <div className="max-w-5xl mx-auto p-6 md:p-10 space-y-8">
+        <div className="max-w-5xl mx-auto p-4 sm:p-6 md:p-10 space-y-6 sm:space-y-8">
             {/* ヘッダー */}
             <div className="space-y-2">
                 {lesson.chapter_title && (
-                    <div className="text-sm font-semibold text-orange-600 uppercase tracking-wide">
+                    <div className="text-xs sm:text-sm font-semibold text-orange-600 uppercase tracking-wide">
                         {lesson.chapter_title}
                     </div>
                 )}
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                <h1 className="text-xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
                     {lesson.title}
                 </h1>
                 {lesson.is_free && (
-                    <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
+                    <div className="inline-flex items-center rounded-full bg-blue-100 px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-blue-800">
                         無料で視聴可能
                     </div>
                 )}
             </div>
 
             {/* 動画プレーヤー */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
                 {lesson.video_id ? (
-                    <div className="space-y-4">
-                        <div className="bg-black rounded-xl overflow-hidden shadow-2xl">
+                    <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-black rounded-lg sm:rounded-xl overflow-hidden shadow-lg sm:shadow-2xl -mx-4 sm:mx-0">
                             <VideoPlayer provider={lesson.video_provider} videoId={lesson.video_id} />
                         </div>
                         
                         {/* 完了ボタン（動画の直下） */}
                         {user && (
-                            <div className="flex flex-col sm:flex-row gap-3">
+                            <div className="flex flex-col gap-3">
                                 <form action={async () => {
                                     'use server'
                                     await toggleLessonComplete(lessonId, !isCompleted)
-                                }} className="flex-1">
+                                }} className="w-full">
                                     <Button
                                         type="submit"
                                         size="lg"
                                         className={isCompleted 
-                                            ? "w-full text-lg bg-green-600 hover:bg-green-700 shadow-lg" 
-                                            : "w-full text-lg bg-orange-600 hover:bg-orange-700 shadow-lg"
+                                            ? "w-full text-base sm:text-lg h-12 sm:h-auto bg-green-600 hover:bg-green-700 shadow-lg" 
+                                            : "w-full text-base sm:text-lg h-12 sm:h-auto bg-orange-600 hover:bg-orange-700 shadow-lg"
                                         }
                                     >
                                         {isCompleted ? (
                                             <>
-                                                <CheckCircle className="mr-2 h-5 w-5" />
-                                                受講完了（未完了に戻す）
+                                                <CheckCircle className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                                                <span className="hidden sm:inline">受講完了（未完了に戻す）</span>
+                                                <span className="sm:hidden">完了済み</span>
                                             </>
                                         ) : (
                                             <>
-                                                <CheckCircle className="mr-2 h-5 w-5" />
+                                                <CheckCircle className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                                                 完了して次へ進む
                                             </>
                                         )}
@@ -129,11 +130,11 @@ export default async function LessonPage({ params }: { params: Promise<{ courseI
                                         asChild
                                         size="lg"
                                         variant="outline"
-                                        className="text-lg border-2 border-gray-300 hover:border-orange-500 hover:bg-orange-50"
+                                        className="w-full sm:w-auto text-base sm:text-lg h-12 sm:h-auto border-2 border-gray-300 hover:border-orange-500 hover:bg-orange-50"
                                     >
                                         <Link href={`/learn/${courseId}/${nextLesson.id}`}>
                                             次のレッスン
-                                            <ChevronRight className="ml-2 h-5 w-5" />
+                                            <ChevronRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                                         </Link>
                                     </Button>
                                 )}
@@ -141,18 +142,18 @@ export default async function LessonPage({ params }: { params: Promise<{ courseI
                         )}
                     </div>
                 ) : (
-                    <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-gray-500 rounded-xl border-2 border-dashed">
+                    <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-gray-500 rounded-lg sm:rounded-xl border-2 border-dashed">
                         <div className="text-center">
-                            <div className="text-4xl mb-2">📹</div>
-                            <div className="text-lg">動画はありません</div>
+                            <div className="text-3xl sm:text-4xl mb-2">📹</div>
+                            <div className="text-base sm:text-lg">動画はありません</div>
                         </div>
                     </div>
                 )}
 
                 {/* コンテンツ */}
                 {lesson.content_md && (
-                    <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-8 md:p-10">
-                        <div className="prose prose-lg max-w-none text-gray-700">
+                    <div className="bg-white rounded-lg sm:rounded-xl border border-gray-200 shadow-sm p-4 sm:p-8 md:p-10">
+                        <div className="prose prose-sm sm:prose-lg max-w-none text-gray-700">
                             <div className="whitespace-pre-wrap leading-relaxed">{lesson.content_md}</div>
                         </div>
                     </div>
