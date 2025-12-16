@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## アカガミ・スクール
+
+60代からのプログラミング学習をサポートするオンラインスクールです。
+
+## ドキュメント
+
+- [フロントエンドデザインガイドライン](./FRONTEND_DESIGN_GUIDELINES.md) - プロダクショングレードのフロントエンドインターフェース作成ガイドライン
+
 ## Getting Started
 
 First, run the development server:
